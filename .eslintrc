@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "inferno-app",
+    "prettier"
+  ],
+  "env": {
+    "node": true
+  },
+  "parser": "babel-eslint"
+}

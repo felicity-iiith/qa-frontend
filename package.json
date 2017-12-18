@@ -1,0 +1,31 @@
+{
+  "name": "contest-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "inferno": "^3.10.1",
+    "inferno-component": "^3.10.1",
+    "inferno-scripts": "5.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.0",
+    "eslint": "^4.7.1",
+    "eslint-config-prettier": "^2.9.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "prettier": "1.9.2"
+  },
+  "scripts": {
+    "start": "inferno-scripts start",
+    "build": "inferno-scripts build",
+    "test": "inferno-scripts test --env=jsdom",
+    "eject": "inferno-scripts eject",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "eslint src/", "git add"],
+    "*.{json,css,md}": ["prettier --write", "git add"]
+  }
+}
