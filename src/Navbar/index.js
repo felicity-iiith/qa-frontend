@@ -8,7 +8,7 @@ export default () => (
         <h1 className="title">{process.env.INFERNO_APP_CONTEST_NAME}</h1>
       </Link>
       <ul className="navigation-list float-right">
-        {!window.email ? (
+        {!window.username ? (
           <li className="navigation-item">
             <Link to="/login" className="navigation-link">
               Login
@@ -16,6 +16,7 @@ export default () => (
           </li>
         ) : (
           <li className="navigation-item">
+            {window.username}&nbsp;
             <Link to="/logout" className="navigation-link">
               Logout
             </Link>
