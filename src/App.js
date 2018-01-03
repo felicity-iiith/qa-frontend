@@ -1,21 +1,15 @@
-import { version } from "inferno";
 import Component from "inferno-component";
 import "./registerServiceWorker";
-import Logo from "./logo";
-import "./App.css";
+
+import Navbar from "./Navbar";
 
 class App extends Component {
-  render() {
+  render({ children }) {
     return (
-      <div className="App">
-        <header className="App-header">
-          <Logo width="80" height="80" />
-          <h1>{`Welcome to Inferno ${version}`}</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <main className="wrapper">
+        <Navbar />
+        <section className="container">{children}</section>
+      </main>
     );
   }
 }
