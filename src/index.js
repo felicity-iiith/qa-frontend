@@ -8,12 +8,12 @@ import createBrowserHistory from "history/createBrowserHistory";
 import { init as authinit, logout } from "./auth";
 import "./fetchWithAuth";
 
+import Hello from "./Hello";
+
 const browserHistory = createBrowserHistory();
 window.browserHistory = browserHistory;
 
 authinit();
-
-const Hello = () => <div>Hello World!</div>;
 
 const routes = (
   <Router history={browserHistory}>
