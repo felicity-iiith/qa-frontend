@@ -1,3 +1,5 @@
+import formurlencoded from "form-urlencoded";
+
 /**
  * Global function which wraps fetch to set username header (useful in development)
  * Also if body is an normal object, makes a formdata object out of it
@@ -12,17 +14,15 @@ window.fetchWithAuth = (url, options = {}) => {
   var body = options.body;
   if (body && typeof body.getAll !== "function") {
     // is not formdata
-    body = new FormData();
-    for (var key in options.body) {
-      body.append(key, options.body[key]);
-    }
+    body = formurlencoded(options.body);
   }
   return fetch(url, {
     ...options,
     body,
     headers: {
       ...options.headers,
-      username: window.username
+      username: window.username,
+      "Content-Type": "application/x-www-form-urlencoded"
     }
   });
 };
