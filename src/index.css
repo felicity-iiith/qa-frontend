@@ -1,5 +1,9 @@
 @import "../node_modules/milligram/dist/milligram.min.css";
 
+body {
+  background: url("./static/pattern.svg");
+}
+
 .wrapper {
   display: block;
   overflow: hidden;
@@ -9,9 +13,14 @@
 .wrapper .container {
   max-width: 80rem;
 }
+
 .wrapper > .container {
-  padding-bottom: 7.5rem;
-  padding-top: 7.5rem;
+  padding-bottom: 1rem;
+  padding-top: 2rem;
+  margin-top: 7.5rem;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 0.5rem;
+  color: #2c3e50;
 }
 
 .error {
