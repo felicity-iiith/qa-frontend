@@ -1,5 +1,8 @@
+/* eslint jsx-a11y/anchor-is-valid: 0 */
+
 import "./navbar.css";
 import Link from "../Link";
+import { logout } from "../auth";
 
 export default () => (
   <nav className="navigation">
@@ -8,20 +11,14 @@ export default () => (
         <h1 className="title">{process.env.INFERNO_APP_CONTEST_NAME}</h1>
       </Link>
       <ul className="navigation-list float-right">
-        {!window.username ? (
-          <li className="navigation-item">
-            <Link to="/login" className="navigation-link">
-              Login
-            </Link>
-          </li>
-        ) : (
-          <li className="navigation-item">
-            {window.username}&nbsp;
-            <Link to="/logout" className="navigation-link">
-              Logout
-            </Link>
-          </li>
-        )}
+        <li className="navigation-item">
+          <span className="navigation-link">{window.username}</span>
+        </li>
+        <li className="navigation-item">
+          <a href="#" onClick={logout} className="navigation-link">
+            Logout
+          </a>
+        </li>
       </ul>
     </section>
   </nav>

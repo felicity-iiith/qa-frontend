@@ -16,12 +16,16 @@ window.fetchWithAuth = (url, options = {}) => {
     // is not formdata
     body = formurlencoded(options.body);
   }
+  let authheaders = {};
+  if (process.env.NODE_ENV !== "production")
+    authheaders.username = window.username;
   return fetch(url, {
     ...options,
     body,
+    credentials: "same-origin",
     headers: {
       ...options.headers,
-      username: window.username,
+      ...authheaders,
       "Content-Type": "application/x-www-form-urlencoded"
     }
   });
