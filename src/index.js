@@ -8,7 +8,7 @@ import createBrowserHistory from "history/createBrowserHistory";
 import { init as authinit, reloadUserinfo } from "./auth";
 import "./fetchWithAuth";
 
-import Hello from "./Hello";
+import QuestionList from "./QuestionList";
 
 const browserHistory = createBrowserHistory();
 window.browserHistory = browserHistory;
@@ -21,7 +21,7 @@ async function routeChange() {
 const routes = (
   <Router asyncBefore={routeChange} history={browserHistory}>
     <Route path={process.env.PUBLIC_URL} component={App}>
-      <IndexRoute component={Hello} />
+      <IndexRoute component={QuestionList} />
     </Route>
   </Router>
 );
