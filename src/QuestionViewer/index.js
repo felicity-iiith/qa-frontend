@@ -34,25 +34,35 @@ class QuestionViewer extends Component {
   };
 
   render() {
-    const { qno, body } = this.props.data;
+    let qno = parseInt(this.props.params.qno, 10);
+    const { body } = this.props.data;
     const { answer, error } = this.state;
+    const endOfContest =
+      window.user.maxUnlock > window.questions.length &&
+      qno > window.questions.length;
+
     return (
       <div>
-        <div>{body}</div>
+        <div>{!endOfContest && body}</div>
+        {endOfContest && (
+          <h4>Congrats! You have successfully completed the contest.</h4>
+        )}
         <br />
-        <form onSubmit={this.checkAnswer}>
-          <label for="answer">Answer</label>
-          <input
-            type="text"
-            name="answer"
-            value={answer}
-            onChange={linkState(this, "answer")}
-          />
-          <div className="clearfix">
-            <div class="error float-left">{error}</div>
-            <button className="button-primary float-right">Check</button>
-          </div>
-        </form>
+        {!endOfContest && (
+          <form onSubmit={this.checkAnswer}>
+            <label for="answer">Answer</label>
+            <input
+              type="text"
+              name="answer"
+              value={answer}
+              onChange={linkState(this, "answer")}
+            />
+            <div className="clearfix">
+              <div class="error float-left">{error}</div>
+              <button className="button-primary float-right">Check</button>
+            </div>
+          </form>
+        )}
         <div className="clearfix">
           {qno !== 1 && (
             <Link className="button float-left" to={`/question/${qno - 1}`}>
@@ -72,6 +82,18 @@ class QuestionViewer extends Component {
 
 export default dataUIComponent(
   QuestionViewer,
-  props => `Q${props.params.qno}: ${props.data.title}`,
-  props => `/questions/${props.params.qno}`
+  props => {
+    const endOfContest =
+      window.user.maxUnlock > window.questions.length &&
+      props.params.qno > window.questions.length;
+    if (endOfContest) return "";
+    else return `Q${props.params.qno}: ${props.data.title}`;
+  },
+  props => {
+    const endOfContest =
+      window.user.maxUnlock > window.questions.length &&
+      props.params.qno > window.questions.length;
+    if (endOfContest) return undefined;
+    else return `/questions/${props.params.qno}`;
+  }
 );
