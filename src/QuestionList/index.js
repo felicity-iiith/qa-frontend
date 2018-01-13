@@ -7,7 +7,11 @@ const QuestionList = ({ data }) => {
     <ul>
       {data.map(question => (
         <li>
-          <Link to={`/question/${question.id}/`}>{question.title}</Link>
+          {question.qno > window.user.maxUnlock ? (
+            question.title
+          ) : (
+            <Link to={`/question/${question.qno}/`}>{question.title}</Link>
+          )}
         </li>
       ))}
     </ul>
