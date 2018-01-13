@@ -30,6 +30,8 @@ const routes = (
 
 async function init() {
   await authinit();
+  window.questions = await window.fetchWithAuth("/questions");
+  window.questions = await window.questions.json();
   render(routes, document.getElementById("app"));
 }
 
