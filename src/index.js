@@ -9,6 +9,7 @@ import { init as authinit, reloadUserinfo } from "./auth";
 import "./fetchWithAuth";
 
 import QuestionList from "./QuestionList";
+import QuestionViewer from "./QuestionViewer";
 
 const browserHistory = createBrowserHistory();
 window.browserHistory = browserHistory;
@@ -22,6 +23,7 @@ const routes = (
   <Router asyncBefore={routeChange} history={browserHistory}>
     <Route path={process.env.PUBLIC_URL} component={App}>
       <IndexRoute component={QuestionList} />
+      <Route path="/question/:qno" component={QuestionViewer} />
     </Route>
   </Router>
 );
