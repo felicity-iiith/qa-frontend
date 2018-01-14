@@ -14,6 +14,9 @@ export default () => (
       <label for="navbarToggle" />
       <ul className="navigation-list float-right">
         <li className="navigation-item">
+          <span className="navigation-link">{window.user.score} points</span>
+        </li>
+        <li className="navigation-item">
           <span className="navigation-link">{window.username}</span>
         </li>
         <li className="navigation-item">
