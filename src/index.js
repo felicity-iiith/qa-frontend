@@ -10,6 +10,7 @@ import "./fetchWithAuth";
 
 import QuestionList from "./QuestionList";
 import QuestionViewer from "./QuestionViewer";
+import Scoreboard from "./Scoreboard";
 
 const browserHistory = createBrowserHistory();
 window.browserHistory = browserHistory;
@@ -24,6 +25,8 @@ const routes = (
     <Route path={process.env.PUBLIC_URL} component={App}>
       <IndexRoute component={QuestionList} />
       <Route path="/question/:qno" component={QuestionViewer} />
+      <Route path="/scoreboard" component={Scoreboard} />
+      <Route path="/scoreboard/:page" component={Scoreboard} />
     </Route>
   </Router>
 );

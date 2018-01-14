@@ -17,6 +17,11 @@ export default () => (
           <span className="navigation-link">{window.user.score} points</span>
         </li>
         <li className="navigation-item">
+          <Link className="navigation-link" to="/scoreboard">
+            Scoreboard
+          </Link>
+        </li>
+        <li className="navigation-item">
           <span className="navigation-link">{window.username}</span>
         </li>
         <li className="navigation-item">
