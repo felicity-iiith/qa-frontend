@@ -1,7 +1,14 @@
 import Component from "inferno-component";
 import Link from "../Link";
 import linkState from "linkstate";
+import MarkdownIt from "markdown-it";
 import dataUIComponent from "../dataUIComponent";
+
+let md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true
+});
 
 class QuestionViewer extends Component {
   state = {
@@ -43,7 +50,9 @@ class QuestionViewer extends Component {
 
     return (
       <div>
-        <div>{!endOfContest && body}</div>
+        {!endOfContest && (
+          <div dangerouslySetInnerHTML={{ __html: md.render(body) }} />
+        )}
         {endOfContest && (
           <h4>Congrats! You have successfully completed the contest.</h4>
         )}
