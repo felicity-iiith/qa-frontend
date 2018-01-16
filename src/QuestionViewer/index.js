@@ -29,6 +29,7 @@ class QuestionViewer extends Component {
       res = await res.json();
       if (res.status) {
         this.setState({ answer: "", error: "" });
+        window.questions[qno - 1].solved = true;
         window.browserHistory.push(
           `${process.env.PUBLIC_URL}/question/${qno + 1}`
         );
@@ -68,6 +69,9 @@ class QuestionViewer extends Component {
             />
             <div className="clearfix">
               <div class="error float-left">{error}</div>
+              {window.questions[qno - 1].solved && (
+                <div className="success float-left">Solved</div>
+              )}
               <button className="button-primary float-right">Check</button>
             </div>
           </form>

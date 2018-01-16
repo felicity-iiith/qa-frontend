@@ -11,6 +11,7 @@ const QuestionList = ({ data }) => (
           ) : (
             <Link to={`/question/${question.qno}/`}>{question.title}</Link>
           )}
+          {question.solved && <span className="success"> Solved</span>}
         </li>
       ))}
     </ul>
