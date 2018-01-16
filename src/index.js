@@ -34,7 +34,17 @@ const routes = (
 async function init() {
   await authinit();
   window.questions = await window.fetchWithAuth("/questions");
+  const isOpen = window.questions.ok;
   window.questions = await window.questions.json();
+  if (!isOpen) {
+    // Returned by isOpen middleware in backend
+    const start = new Date(window.questions.startTime).toLocaleString();
+    const end = new Date(window.questions.endTime).toLocaleString();
+    alert(`
+Contest only available from ${start} to ${end}.
+Scoreboard will still be available.`);
+    window.questions = [];
+  }
   render(routes, document.getElementById("app"));
 }
 
