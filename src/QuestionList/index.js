@@ -1,11 +1,10 @@
 import Link from "../Link";
-import dataUIComponent from "../dataUIComponent";
 
-const QuestionList = ({ data }) => {
-  window.questions = data;
-  return (
+const QuestionList = ({ data }) => (
+  <div>
+    <h1>Questions</h1>
     <ul>
-      {data.map(question => (
+      {window.questions.map(question => (
         <li>
           {question.qno > window.user.maxUnlock ? (
             question.title
@@ -15,7 +14,7 @@ const QuestionList = ({ data }) => {
         </li>
       ))}
     </ul>
-  );
-};
+  </div>
+);
 
-export default dataUIComponent(QuestionList, "Questions", "/questions");
+export default QuestionList;
