@@ -46,7 +46,8 @@ class QuestionViewer extends Component {
     const { body } = this.props.data;
     const { answer, error } = this.state;
     const endOfContest =
-      window.user.maxUnlock > window.questions.length &&
+      window.user.maxLevel >
+        window.questions[window.questions.length - 1].level.lno &&
       qno > window.questions.length;
 
     return (
@@ -55,7 +56,10 @@ class QuestionViewer extends Component {
           <div dangerouslySetInnerHTML={{ __html: md.render(body) }} />
         )}
         {endOfContest && (
-          <h4>Congrats! You have successfully completed the contest.</h4>
+          <h4>
+            Congrats! You have successfully completed the contest. (If any
+            question is left, please go back and solve for more points.)
+          </h4>
         )}
         <br />
         {!endOfContest && (
@@ -82,11 +86,13 @@ class QuestionViewer extends Component {
               Prev
             </Link>
           )}
-          {qno < window.user.maxUnlock && (
-            <Link className="button float-right" to={`/question/${qno + 1}`}>
-              Next
-            </Link>
-          )}
+          {(!window.questions[qno] ||
+            window.questions[qno].level.lno <= window.user.maxLevel) &&
+            qno <= window.questions.length && (
+              <Link className="button float-right" to={`/question/${qno + 1}`}>
+                Next
+              </Link>
+            )}
         </div>
       </div>
     );
@@ -97,14 +103,16 @@ export default dataUIComponent(
   QuestionViewer,
   props => {
     const endOfContest =
-      window.user.maxUnlock > window.questions.length &&
+      window.user.maxLevel >
+        window.questions[window.questions.length - 1].level.lno &&
       props.params.qno > window.questions.length;
     if (endOfContest) return "";
     else return `Q${props.params.qno}: ${props.data.title}`;
   },
   props => {
     const endOfContest =
-      window.user.maxUnlock > window.questions.length &&
+      window.user.maxLevel >
+        window.questions[window.questions.length - 1].level.lno &&
       props.params.qno > window.questions.length;
     if (endOfContest) return undefined;
     else return `/questions/${props.params.qno}`;
