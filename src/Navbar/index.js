@@ -10,6 +10,8 @@ export default () => (
       <Link className="navigation-title" to="/">
         <h1 className="title">{process.env.INFERNO_APP_CONTEST_NAME}</h1>
       </Link>
+      <input type="checkbox" id="navbarToggle" />
+      <label for="navbarToggle" />
       <ul className="navigation-list float-right">
         <li className="navigation-item">
           <span className="navigation-link">{window.username}</span>

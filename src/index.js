@@ -13,8 +13,13 @@ import Hello from "./Hello";
 const browserHistory = createBrowserHistory();
 window.browserHistory = browserHistory;
 
+async function routeChange() {
+  document.getElementById("navbarToggle").checked = false;
+  await reloadUserinfo();
+}
+
 const routes = (
-  <Router asyncBefore={reloadUserinfo} history={browserHistory}>
+  <Router asyncBefore={routeChange} history={browserHistory}>
     <Route path={process.env.PUBLIC_URL} component={App}>
       <IndexRoute component={Hello} />
     </Route>

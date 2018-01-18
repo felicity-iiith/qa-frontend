@@ -54,3 +54,40 @@
 .navigation .navigation-link.active {
   color: #606c76;
 }
+
+#navbarToggle,
+#navbarToggle + label {
+  display: none;
+}
+
+@media (max-width: 80rem) {
+  .navigation {
+    border-bottom: 0.1rem solid #111;
+  }
+  .container {
+    background: rgba(244, 245, 246, 0.95);
+  }
+  .navigation .navigation-item {
+    float: unset;
+    margin-left: auto;
+  }
+  .navigation-list.float-right {
+    float: unset;
+    display: none;
+  }
+  #navbarToggle + label {
+    float: right;
+    display: inline-block;
+    line-height: 5.2rem;
+    padding-left: 1rem;
+  }
+  #navbarToggle + label:before {
+    content: "\2630";
+  }
+  #navbarToggle:checked + label:before {
+    content: "\26CC";
+  }
+  #navbarToggle:checked ~ ul.navigation-list {
+    display: block;
+  }
+}
