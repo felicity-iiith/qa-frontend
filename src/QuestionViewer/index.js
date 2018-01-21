@@ -3,6 +3,7 @@ import Link from "../Link";
 import linkState from "linkstate";
 import MarkdownIt from "markdown-it";
 import MarkdownItKatex from "markdown-it-katex";
+import MarkdownItAsciimath from "markdown-it-asciimath";
 import dataUIComponent from "../dataUIComponent";
 
 let md = new MarkdownIt({
@@ -11,6 +12,8 @@ let md = new MarkdownIt({
   typographer: true
 });
 md.use(MarkdownItKatex);
+md.use(MarkdownItAsciimath);
+require("markdown-it-asciimath/ASCIIMathTeXImg.js");
 
 class QuestionViewer extends Component {
   state = {
