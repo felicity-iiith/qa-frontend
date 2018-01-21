@@ -19,12 +19,17 @@ export function logout() {
 export async function reloadUserinfo() {
   try {
     let res = await window.fetchWithAuth("/users");
+    if (res.status === 401) {
+      window.location.assign(process.env.INFERNO_APP_TEAMS_URL);
+      return;
+    }
     res = await res.json();
     window.user = res;
-    window.username = res.username;
-    window.localStorage.setItem("username", res.username);
+    window.username = res.info.username;
+    window.localStorage.setItem("username", window.username);
   } catch (e) {
     // Hopefully will fix error
-    if (process.env.NODE_ENV === "production") logout();
+    if (process.env.NODE_ENV === "production")
+      window.location.assign(process.env.INFERNO_APP_TEAMS_URL);
   }
 }

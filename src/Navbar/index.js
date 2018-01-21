@@ -17,6 +17,14 @@ export default () => (
           <span className="navigation-link">{window.user.score} points</span>
         </li>
         <li className="navigation-item">
+          <a
+            className="navigation-link"
+            href={process.env.INFERNO_APP_TEAMS_URL}
+          >
+            Team
+          </a>
+        </li>
+        <li className="navigation-item">
           <Link className="navigation-link" to="/scoreboard">
             Scoreboard
           </Link>
