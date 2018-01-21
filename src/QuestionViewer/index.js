@@ -2,6 +2,7 @@ import Component from "inferno-component";
 import Link from "../Link";
 import linkState from "linkstate";
 import MarkdownIt from "markdown-it";
+import MarkdownItKatex from "markdown-it-katex";
 import dataUIComponent from "../dataUIComponent";
 
 let md = new MarkdownIt({
@@ -9,6 +10,7 @@ let md = new MarkdownIt({
   linkify: true,
   typographer: true
 });
+md.use(MarkdownItKatex);
 
 class QuestionViewer extends Component {
   state = {
@@ -52,6 +54,10 @@ class QuestionViewer extends Component {
 
     return (
       <div>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"
+        />
         {!endOfContest && (
           <div dangerouslySetInnerHTML={{ __html: md.render(body) }} />
         )}
